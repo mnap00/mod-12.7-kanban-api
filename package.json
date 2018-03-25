@@ -1,0 +1,47 @@
+{
+  "name": "mod-12.7-kanban-api",
+  "version": "0.7.0",
+  "description": "API - Kanban board",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm-run-all --sequential test:*",
+    "test:html": "globstar nu-html-checker *.html",
+    "test:js": "globstar jshint js/*.js",
+    "init-project": "npm install && npm-run-all --sequential init:*",
+    "init:dirs": "mkdirp sass css vendor images js",
+    "init:files": "touch README.md index.html sass/style.scss js/script.js",
+    "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Sass.gitignore > .gitignore && echo >> .gitignore && curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore >> .gitignore",
+    "build": "npm-run-all --sequential build:* test",
+    "build:clean": "rimraf css",
+    "build:sass": "node-sass --output-style compact -o css sass",
+    "build:autoprefixer": "autoprefixer-cli css/style.css",
+    "build-dev:sass": "node-sass --output-style expanded --source-map true -o css sass",
+    "watch": "npm-run-all build --parallel watch:*",
+    "watch:browsersync": "browser-sync start --server --files 'css/*.css' '*.html' 'js/*.js'",
+    "watch:sassprefixer": "onchange 'sass/*.scss' -- npm-run-all --sequential build-dev:sass build:autoprefixer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnap00/mod-12.7-kanban-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mnap00/mod-12.7-kanban-api/issues"
+  },
+  "homepage": "https://github.com/mnap00/mod-12.7-kanban-api#readme",
+  "devDependencies": {
+    "autoprefixer-cli": "^1.0.0",
+    "browser-sync": "^2.23.6",
+    "globstar": "^1.0.0",
+    "jshint": "^2.9.5",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.8.3",
+    "npm-run-all": "^4.1.2",
+    "nu-html-checker": "^0.1.0",
+    "onchange": "^3.3.0",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {}
+}
