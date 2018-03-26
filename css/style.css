@@ -4,7 +4,11 @@ body { margin: 0; }
 
 .ui-sortable { min-height: 80px; }
 
-.btn-delete { position: absolute; right: 0; top: 0; width: 22px; height: 22px; border: 0; background-color: rgba(0, 0, 0, 0.4); color: white; }
+.btn-delete, .btn-rename { position: absolute; top: 0; width: 22px; height: 22px; border: 0; background-color: rgba(0, 0, 0, 0.4); color: white; }
+
+.btn-delete { right: 0; }
+
+.btn-rename { right: 22px; }
 
 /* BOARD */
 .board h1 { margin-left: 8px; }
