@@ -1,10 +1,11 @@
 // KLASA KANBAN CARD
-function Card(id, name) {
+function Card(id, name, col_id) {
 	var self = this;
 
 	this.id = id;
 	this.name = name || "Bez nazwy";
 	this.element = createCard();
+    this.columnId = col_id;
 
 	function createCard() {
 		var card = $('<li class="card"></li>');
@@ -54,5 +55,25 @@ Card.prototype = {
                 self.element.remove();
             }
         });
-	}
+	},
+    moveCard: function() {
+        var self = this;
+        console.log(self.id);
+    }
 };
+/*
+        moveCard(function(col_id) {
+            // get new col_id with some event somehow
+            var newColumnId = col_id
+            $.ajax({
+                url: baseUrl + '/card/' + self.id,
+                method: 'PUT',
+                data: {
+                    bootcamp_kanban_column_id: newColumnId
+                },
+                success: function() {
+                    self.columnId = newColumnId;
+                }
+            });
+        });
+*/

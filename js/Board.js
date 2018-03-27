@@ -23,9 +23,19 @@ $('.create-column')
         });
 	});
 
+$('.column-container').on('DOMSubtreeModified', '.card', function() {
+    console.log('modified');
+});
+
 function initSortable() {
     $('.card-list').sortable({
         connectWith: '.card-list',
-        placeholder: 'card-placeholder'
+        placeholder: 'card-placeholder',
+        // get col_id here ?
+        //change: function(event, ui) {
+        //    console.log(event);
+        //    console.log(ui.item);
+        //    console.log(event.target.parentNode);
+        //}
     }).disableSelection();
 }
