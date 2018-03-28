@@ -8,7 +8,7 @@ function Card(id, name, col_id) {
     this.columnId = col_id;
 
 	function createCard() {
-		var card = $('<li class="card"></li>');
+		var card = $('<li class="card"></li>').attr('id', self.id);
 		var cardDeleteBtn = $('<button class="btn-delete">x</button>');
 		var cardRename = $('<button class="btn-rename">e</button>');
 		var cardDescription = $('<p class="card-description"></p>');
@@ -56,24 +56,15 @@ Card.prototype = {
             }
         });
 	},
-    moveCard: function() {
-        var self = this;
-        console.log(self.id);
-    }
 };
-/*
-        moveCard(function(col_id) {
-            // get new col_id with some event somehow
-            var newColumnId = col_id
-            $.ajax({
-                url: baseUrl + '/card/' + self.id,
-                method: 'PUT',
-                data: {
-                    bootcamp_kanban_column_id: newColumnId
-                },
-                success: function() {
-                    self.columnId = newColumnId;
-                }
-            });
-        });
-*/
+
+function moveCard(id, col_id) {
+    var newColumnId = col_id;
+    $.ajax({
+        url: baseUrl + '/card/' + id,
+        method: 'PUT',
+        data: {
+            bootcamp_kanban_column_id: newColumnId
+        }
+    });
+}

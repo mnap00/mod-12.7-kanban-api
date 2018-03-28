@@ -23,19 +23,30 @@ $('.create-column')
         });
 	});
 
-$('.column-container').on('DOMSubtreeModified', '.card', function() {
-    console.log('modified');
-});
+//$('.column-container').on('DOMSubtreeModified', '.card', function() {
+//    console.log('modified');
+//});
 
 function initSortable() {
     $('.card-list').sortable({
         connectWith: '.card-list',
         placeholder: 'card-placeholder',
         // get col_id here ?
-        //change: function(event, ui) {
-        //    console.log(event);
-        //    console.log(ui.item);
-        //    console.log(event.target.parentNode);
-        //}
+        stop: function(event, ui) {
+            var id = ui.item[0].id;
+            var col_id = event.target.parentNode.id;
+            moveCard(id, col_id);
+        }
     }).disableSelection();
+}
+
+function moveCard(id, col_id) {
+    var newColumnId = col_id;
+    $.ajax({
+        url: baseUrl + '/card/' + id,
+        method: 'PUT',
+        data: {
+            bootcamp_kanban_column_id: newColumnId
+        }
+    });
 }
