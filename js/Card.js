@@ -28,7 +28,8 @@ function Card(id, name, col_id) {
                 url: baseUrl + '/card/' + self.id,
                 method: 'PUT',
                 data: {
-                    name: newDescription
+                    name: newDescription,
+                    bootcamp_kanban_column_id: self.columnId
                 },
                 success: function() {
                     console.log('done');
@@ -57,14 +58,3 @@ Card.prototype = {
         });
 	},
 };
-
-function moveCard(id, col_id) {
-    var newColumnId = col_id;
-    $.ajax({
-        url: baseUrl + '/card/' + id,
-        method: 'PUT',
-        data: {
-            bootcamp_kanban_column_id: newColumnId
-        }
-    });
-}
