@@ -23,7 +23,6 @@ function Card(id, name, col_id) {
                 return alert("Karta nie może być pusta");
             }
             event.preventDefault();
-            console.log(newDescription);
             $.ajax({
                 url: baseUrl + '/card/' + self.id,
                 method: 'PUT',
@@ -32,7 +31,6 @@ function Card(id, name, col_id) {
                     bootcamp_kanban_column_id: self.columnId
                 },
                 success: function() {
-                    console.log('done');
                     self.name = newDescription;
                     cardDescription.text(self.name);
                 }
